@@ -51,14 +51,11 @@ public class UserServiceTest {
 
     @Test
     void testAssignRoleToUser() {
-        // Arrange
         when(userRepository.findById(1L)).thenReturn(Optional.of(testUser));
         when(roleRepository.findById(1L)).thenReturn(Optional.of(testRole));
 
-        // Act
         userService.assignRoleToUser(1L, 1L);
 
-        // Assert
         verify(userRepository, times(1)).findById(1L);
         verify(roleRepository, times(1)).findById(1L);
         verify(userRepository, times(1)).saveAndFlush(testUser);

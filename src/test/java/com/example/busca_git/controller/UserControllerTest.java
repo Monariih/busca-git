@@ -35,7 +35,7 @@ public class UserControllerTest {
     @Test
     @WithMockUser(username = "admin", password = "password")
     void testGetAllUsersWithRoles() throws Exception {
-        // Arrange
+
         UserWithRolesDto userDto = new UserWithRolesDto();
         userDto.setId(1L);
         userDto.setLogin("testuser");
@@ -45,7 +45,6 @@ public class UserControllerTest {
         List<UserWithRolesDto> usersList = Arrays.asList(userDto);
         when(userService.getAllUsersWithRoles()).thenReturn(usersList);
 
-        // Act & Assert
         mockMvc.perform(get("/api/users"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].login").value("testuser"))
